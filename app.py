@@ -1,7 +1,7 @@
 
 from flask import Flask, request
 
-from DBC import getOwnerProds, getOwnerProd
+from DBC import *
 
 from flask_cors import CORS
 
@@ -23,6 +23,17 @@ def getProductQuantity():
     userToken = request.args["user"]
     prodId = request.args["product"]
     return {"Products":getOwnerProd(userToken,prodId)}
+
+@app.route("/webService/productInsert", methods = ['GET', 'POST'])
+def insertProducts():
+    data = request.get_json()
+    nombre = data['nombre']
+    cantidad = data['cantidad']
+    precio = data['precio']
+    owner = data['owner']
+    ownerId = getOwnerId(owner)
+    insertProduct(nombre, cantidad, precio, ownerId)
+
 
 
 

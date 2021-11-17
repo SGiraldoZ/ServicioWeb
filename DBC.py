@@ -8,6 +8,15 @@ OWNER_PRODUCT_QUERY='''SELECT Id, Nombre, Cantidad
                         FROM Inventory WHERE OwnerId LIKE %s
                         AND Id = %s;'''
 
+CREATE_USER = '''INSERT INTO Owner (Id, Name)
+                VALUE (%s, %s);'''
+
+INSERT_PRODUCT = '''INSERT INTO Product (Nombre, Cantidad, Precio, OwnerId)
+                    VALUE (%s, %s, %s, %s)'''
+
+GET_OWNER_ID = '''SELECT Id FROM OWNER 
+                  WHERE Name LIKE %s'''
+
 # crear la conexión
 
 def connect():
@@ -43,3 +52,18 @@ def getOwnerProd(userToken, prodId):
     result = cur.fetchall()
     conn.close()
     return result
+
+def insertProduct(nombre, cantidad, precio, owner):
+    conn = connect()
+    cur = conn.cursor()
+    cur.execute(INSERT_PRODUCT, (nombre, cantidad, precio, owner))
+    conn.commit()
+    conn.close()
+
+def getOwnerId(owner):
+    conn = connect()
+    cur = conn.cursor()
+    cur.execute(GET_OWNER_ID, (owner,))
+    result = cur.fetchone()
+    conn.close()
+    return result[0]
