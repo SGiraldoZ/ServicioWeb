@@ -1,5 +1,5 @@
 
-from flask import Flask, request
+from flask import Flask, request, Response
 
 from DBC import *
 
@@ -27,12 +27,21 @@ def getProductQuantity():
 @app.route("/webService/productInsert", methods = ['GET', 'POST'])
 def insertProducts():
     data = request.get_json()
-    nombre = data['nombre']
-    cantidad = data['cantidad']
-    precio = data['precio']
-    owner = data['owner']
-    ownerId = getOwnerId(owner)
-    insertProduct(nombre, cantidad, precio, ownerId)
+    if data:
+        if "nombre" in data:
+            nombre = data['nombre']
+        if "cantidad" in data:
+            cantidad = data['cantidad']
+        if "precio" in data:
+            precio = data['precio']
+        if "owner" in data:
+            owner = data['owner']
+        ownerId = getOwnerId(owner)
+        insertProduct(nombre, cantidad, precio, ownerId)
+        return Response(status=200)
+
+    return "<h1> Algo salio mal</h1>"
+
 
 
 

@@ -11,10 +11,10 @@ OWNER_PRODUCT_QUERY='''SELECT Id, Nombre, Cantidad
 CREATE_USER = '''INSERT INTO Owner (Id, Name)
                 VALUE (%s, %s);'''
 
-INSERT_PRODUCT = '''INSERT INTO Product (Nombre, Cantidad, Precio, OwnerId)
+INSERT_PRODUCT = '''INSERT INTO Inventory (Nombre, Cantidad, Precio, OwnerId)
                     VALUE (%s, %s, %s, %s);'''
 
-GET_OWNER_ID = '''SELECT Id FROM OWNER 
+GET_OWNER_ID = '''SELECT Id FROM Owner
                   WHERE Name LIKE %s;'''
 
 # crear la conexión
