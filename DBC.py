@@ -12,10 +12,10 @@ CREATE_USER = '''INSERT INTO Owner (Id, Name)
                 VALUE (%s, %s);'''
 
 INSERT_PRODUCT = '''INSERT INTO Product (Nombre, Cantidad, Precio, OwnerId)
-                    VALUE (%s, %s, %s, %s)'''
+                    VALUE (%s, %s, %s, %s);'''
 
 GET_OWNER_ID = '''SELECT Id FROM OWNER 
-                  WHERE Name LIKE %s'''
+                  WHERE Name LIKE %s;'''
 
 # crear la conexión
 
