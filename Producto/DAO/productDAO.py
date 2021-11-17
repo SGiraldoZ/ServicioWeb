@@ -44,4 +44,5 @@ def product_exists_by_name(name):
     cur = conn.cursor()
     cur.execute(PRODUCT_EXISTS_BY_NAME, (name,))
     result = cur.fetchall()[0]
+    conn.close()
     return result >= 1
