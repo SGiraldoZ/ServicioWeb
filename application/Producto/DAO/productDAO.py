@@ -15,7 +15,6 @@ INSERT_PRODUCT = '''INSERT INTO Inventory (Nombre, Cantidad, Precio, OwnerId)
 PRODUCT_EXISTS_BY_NAME = '''SELECT COUNT(Id) FROM Inventory
                             WHERE Nombre LIKE %s'''
 
-
 def find_products_by_owner(userToken):
     conn = connect()
     cur = conn.cursor(dictionary=True)
