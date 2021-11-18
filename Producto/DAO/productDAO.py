@@ -12,7 +12,7 @@ OWNER_PRODUCT_QUERY='''SELECT Id, Nombre, Cantidad
 INSERT_PRODUCT = '''INSERT INTO Inventory (Nombre, Cantidad, Precio, OwnerId)
                     VALUE (%s, %s, %s, %s);'''
 
-PRODUCT_EXISTS_BY_NAME = '''SELECT COUNT(Id) FROM INVENTORY
+PRODUCT_EXISTS_BY_NAME = '''SELECT COUNT(Id) FROM Inventory
                             WHERE Nombre LIKE %s'''
 
 
@@ -43,6 +43,6 @@ def product_exists_by_name(name):
     conn = connect()
     cur = conn.cursor()
     cur.execute(PRODUCT_EXISTS_BY_NAME, (name,))
-    result = cur.fetchall()[0]
+    result = cur.fetchone()[0]
     conn.close()
     return result >= 1
