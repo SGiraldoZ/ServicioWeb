@@ -2,10 +2,12 @@
 from flask import Flask
 from application.Producto.controller.productController import product_controller
 from flask_cors import CORS
+from application.Owner.controller.ownerController import owner_controller
 
 app = Flask(__name__)
 CORS(app)
 app.register_blueprint(product_controller, url_prefix="/webService")
+app.register_blueprint(owner_controller, url_prefix="/webService")
 
 @app.route('/')
 def hello_world():  # put application's code here
